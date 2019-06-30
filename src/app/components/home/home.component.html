@@ -1,0 +1,23 @@
+<div class="body">
+
+<div class="row">
+    <div class="col col-12 col-md-6 col-lg-3" *ngFor="let itm of items; index as i">
+        <div class="card">
+            <div class="card card-header"><h5>{{itm.name | titlecase}}</h5></div>
+            <img src="{{itm.photoUrl}}"  class="card-img">
+            <div class="card-body">
+                <p class="card-text">{{itm.description}}</p>
+            </div>
+             
+            <div class="card-body">
+                    <a (click)=addToCart(i) class=" card-link btn btn-outline-success">Add to Cart</a>
+                    <span class="badge badge-secondary badge-format">{{itm.currentPrice}}€</span>
+                    <a  class="card-link btn btn-outline-primary">Look more</a>
+            </div>
+    </div>
+
+
+
+
+</div>
+</div>
