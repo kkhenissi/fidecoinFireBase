@@ -1,26 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Item } from 'src/app/interfaces/item.iterface';
+import { ItemsService } from 'src/app/services/items.service';
+import { element } from 'protractor';
+import { Subscription } from 'rxjs';
+ 
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
-  items: Array<Item> = [
-    {name: 'nickon1', description: 'Desction of nickon1', currentPrice: 185.00, photoUrl:'assets/images/nickon1.png' },
-    {name: 'nickon2', description: 'Desction of nickon2', currentPrice: 175.00, photoUrl:'assets/images/nickon2.png' },
-    {name: 'nickon3', description: 'Desction of nickon3', currentPrice: 165.00, photoUrl:'assets/images/nickon3.png' },
-    {name: 'nickon4', description: 'Desction of nickon4', currentPrice: 155.00, photoUrl:'assets/images/nickon4.png' },
-    {name: 'nickon5', description: 'Desction of nickon5', currentPrice: 145.00, photoUrl:'assets/images/nickon5.png' },
+export class HomeComponent implements OnInit, OnDestroy {
 
-  ]
-  constructor() { }
+  items: Array<Item> = [];
+  itemsSubscription: Subscription;
+  constructor(private itemsService: ItemsService) { }
 
   ngOnInit() {
+   this.itemsSubscription =  this.itemsService.getAllItems()
+         .subscribe(data => {
+          // tslint:disable-next-line:no-shadowed-variable
+          this.items = data.map( element => {
+            return {
+              id: element.payload.doc.id,
+              ...element.payload.doc.data()
+            };
+          });
+         }, err => {
+           console.log(err);
+         });
   }
-  addToCart(itm) {
-    console.log('55555555555555555', itm)
+  addToCart(id) {
+    console.log('55555555555555555', id);
+  }
+
+  ngOnDestroy(): void {
+    this.itemsSubscription.unsubscribe();
+
   }
 
 }
