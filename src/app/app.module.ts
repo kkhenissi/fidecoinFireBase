@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AngularFireModule } from '@angular/fire';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,8 +32,18 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    NgbModule,FormsModule
-    
+    NgbModule,
+    FormsModule,
+    AngularFireModule.initializeApp({
+      apiKey: 'AIzaSyBp5mKyvSCK8ZtZeoMWqisXtFJXCMJx02k',
+      authDomain: 'fidecoinfireb.firebaseapp.com',
+      databaseURL: 'https://fidecoinfireb.firebaseio.com',
+      projectId: 'fidecoinfireb',
+      storageBucket: '',
+      messagingSenderId: '219536801527',
+      appId: '1:219536801527:web:da5cc726d77d3119'
+    })
+
   ],
   providers: [],
   bootstrap: [AppComponent]
