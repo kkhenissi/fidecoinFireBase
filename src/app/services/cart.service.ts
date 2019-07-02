@@ -17,7 +17,13 @@ export class CartService {
   }
 
   getCart() {
-    return this.afStore.collection(`users/${this.authService.userId}/cart`).snapshotChanges()
+    return this.afStore.collection(`users/${this.authService.userId}/cart`).snapshotChanges();
+
+  }
+
+  deleteInCart(id) {
+
+    return this.afStore.doc(`users/${this.authService.userId}/cart/${id}`).delete();
 
   }
 }

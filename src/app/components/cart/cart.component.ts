@@ -23,7 +23,13 @@ export class CartComponent implements OnInit {
           })
           console.log('oooooooooooooooooooooooooo', this.cart)
 
-        }, err => { console.log('eeeerrrr', err)})
+        });
+  }
+
+  deleteFromCart(index) {
+  
+    this.cartService.deleteInCart(this.cart[index].id);
+
   }
 
 }
