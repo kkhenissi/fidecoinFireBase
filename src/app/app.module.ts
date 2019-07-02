@@ -17,6 +17,7 @@ import { AccountComponent } from './components/account/account.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { FormsModule } from '@angular/forms';
+ 
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { FormsModule } from '@angular/forms';
       appId: '1:219536801527:web:da5cc726d77d3119'
     }),
     AngularFirestoreModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+   
 
   ],
   providers: [],

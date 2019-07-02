@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,7 +10,8 @@ import { Component, OnInit } from '@angular/core';
 export class NavBarComponent implements OnInit {
   showhideNav: boolean = false;
 
-  constructor() { }
+  constructor(private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -16,6 +19,11 @@ export class NavBarComponent implements OnInit {
   showHide() {
     this.showhideNav = !this.showhideNav;
 
+  }
+  logout() {
+    this.authService.logout()
+                     .then(() => console.log('loged out'));
+                     this.router.navigate(['/login']);
   }
 
 }
