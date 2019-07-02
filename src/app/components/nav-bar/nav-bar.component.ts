@@ -11,6 +11,7 @@ export class NavBarComponent implements OnInit {
   showhideNav: boolean = false;
   isUser: boolean = false;
 
+
   constructor(private authService: AuthService,
               private router: Router) { }
 
@@ -20,9 +21,10 @@ export class NavBarComponent implements OnInit {
           this.isUser = true;
           this.authService.userId = usr.uid;
       } else {
-          this.isUser = false;
+        this.authService.userId = '';
+        this.isUser = false;
       }
-    })
+    });
   }
  
 

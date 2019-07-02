@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Item } from 'src/app/interfaces/item.iterface';
 import { ItemsService } from 'src/app/services/items.service';
-import { element } from 'protractor';
 import { Subscription } from 'rxjs';
- 
+import { CartService } from 'src/app/services/cart.service';
+
 
 @Component({
   selector: 'app-home',
@@ -14,7 +14,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   items: Array<Item> = [];
   itemsSubscription: Subscription;
-  constructor(private itemsService: ItemsService) { }
+  add: number = -1;
+  amountValue: number = 0;
+  constructor(private itemsService: ItemsService,
+              private cartService: CartService) { }
 
   ngOnInit() {
    this.itemsSubscription =  this.itemsService.getAllItems()
@@ -30,13 +33,30 @@ export class HomeComponent implements OnInit, OnDestroy {
            console.log(err);
          });
   }
-  addToCart(id) {
-    console.log('55555555555555555', id);
+  addToCart(index: number) {
+      this.add = +index;
+      
   }
 
   ngOnDestroy(): void {
     this.itemsSubscription.unsubscribe();
 
+  }
+  buy(amount: number) {
+    const selectedItem = this.items[this.add];
+    const data = {
+      name: selectedItem.name,
+      amount: +amount,
+      currentPrice: selectedItem.currentPrice
+    };
+    this.cartService.cartElements = this.amountValue;
+    console.log('wwwwwwwwwwwwwwwwwwwwwwwwwww', this.amountValue);
+    this.cartService.addToCart(data)
+         .then(() => {
+          console.log('yyyyyyyyyyyeeeeeeeeeeeeessssss', data);
+          this.add = -1;
+       })
+       .catch(err => console.log('eeeeeeeeeeeerrrrrrrrrrrrrrrr', err));
   }
 
 }

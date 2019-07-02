@@ -10,7 +10,11 @@
             </div>
              
             <div class="card-body">
-                    <a (click)=addToCart(itm.id) class=" card-link btn btn-outline-success">Add to Cart</a>
+                    <a (click)=addToCart(i) class=" card-link btn btn-outline-success" *ngIf="add !== i">Add to Cart</a>
+                    <div *ngIf="add === i">
+                        <input type="number" class="form-group" placeholder="Amount (Un)" [(ngModel)]= "amountValue" #amountTag>
+                        <button class="btn btn-success" (click)="buy(amountTag.value)">Buy</button>
+                    </div>
                     <span class="badge badge-secondary badge-format">{{itm.currentPrice}}€</span>
                     <a  class="card-link btn btn-outline-primary">Look more</a>
             </div>
