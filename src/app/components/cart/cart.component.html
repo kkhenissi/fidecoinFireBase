@@ -16,7 +16,7 @@
                     </td>
                     <td>{{(itm.currentPrice * itm.amount) | currency}}</td>
                     <td>
-                        <button class="btn btn-primary"> Save </button>
+                        <button class="btn btn-primary"(click)="saveInCart(i)"> Save </button>
                         <button class="btn btn-danger" (click)="deleteFromCart(i)"> Delete</button>
                     </td>
                 </tr>

@@ -26,4 +26,10 @@ export class CartService {
     return this.afStore.doc(`users/${this.authService.userId}/cart/${id}`).delete();
 
   }
+  saveInCart(id, amount) {
+    return this.afStore.doc(`users/${this.authService.userId}/cart/${id}`).update({
+      amount
+    });
+
+  }
 }
