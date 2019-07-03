@@ -3,6 +3,8 @@ import { Item } from 'src/app/interfaces/item.iterface';
 import { ItemsService } from 'src/app/services/items.service';
 import { Subscription } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,31 +13,34 @@ import { CartService } from 'src/app/services/cart.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-
   items: Array<Item> = [];
   itemsSubscription: Subscription;
   add: number = -1;
   amountValue: number = 0;
   constructor(private itemsService: ItemsService,
-              private cartService: CartService) { }
+              private cartService: CartService,
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
    this.itemsSubscription =  this.itemsService.getAllItems()
          .subscribe(data => {
-          // tslint:disable-next-line:no-shadowed-variable
           this.items = data.map( element => {
             return {
               id: element.payload.doc.id,
               ...element.payload.doc.data()
             };
           });
+          console.log('sssssssssssssssssssssssssssssss', this.items);
          }, err => {
            console.log(err);
          });
   }
   addToCart(index: number) {
-      this.add = +index;
-
+    // tslint:disable-next-line:curly
+    if (this.authService.userId) this.add = +index;
+    // tslint:disable-next-line:curly
+    else this.router.navigate(['/login']);
   }
 
   ngOnDestroy(): void {

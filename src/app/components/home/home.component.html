@@ -3,10 +3,10 @@
 <div class="row">
     <div class="col col-12 col-md-6 col-lg-3" *ngFor="let itm of items; index as i">
         <div class="card">
-            <div class="card card-header"><h5>{{itm.name | titlecase}}</h5></div>
+            <div class="card card-header"><h5>{{itm.item.name | titlecase}}</h5></div>
             <img src="{{itm.photoUrl}}"  class="card-img">
             <div class="card-body">
-                <p class="card-text">{{itm.description}}</p>
+                <p class="card-text">{{itm.item.description}}</p>
             </div>
              
             <div class="card-body">
@@ -15,7 +15,7 @@
                         <input type="number" class="form-group" placeholder="Amount (Un)" [(ngModel)]= "amountValue" #amountTag>
                         <button class="btn btn-success" (click)="buy(amountTag.value)">Buy</button>
                     </div>
-                    <span class="badge badge-secondary badge-format">{{itm.currentPrice}}€</span>
+                    <span class="badge badge-secondary badge-format">{{itm.item.currentPrice}}€</span>
                     <a  class="card-link btn btn-outline-primary">Look more</a>
             </div>
     </div>

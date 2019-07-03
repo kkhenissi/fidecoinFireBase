@@ -26,7 +26,7 @@ export class ItemsComponent implements OnInit {
     // tslint:disable-next-line:one-variable-per-declaration
     // tslint:disable-next-line:align
     const  photo = (this.itemPhoto.nativeElement as HTMLInputElement).files[0];
-   this.itemService.addNewItem(newItem, photo);
+   this.itemService.addNewItem(newItem, photo).then(msg => console.log(msg));
   }
 
 }
