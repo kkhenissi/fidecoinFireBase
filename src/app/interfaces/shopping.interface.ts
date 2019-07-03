@@ -1,6 +1,6 @@
 export interface Shopping {
     id?: string;
-    ammount?: number;
+    amount?: number;
     name?: string;
     currentPrice?: number;
 

@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,12 +43,13 @@ import { FormsModule } from '@angular/forms';
       authDomain: 'fidecoinfireb.firebaseapp.com',
       databaseURL: 'https://fidecoinfireb.firebaseio.com',
       projectId: 'fidecoinfireb',
-      storageBucket: '',
+      storageBucket: 'gs://fidecoinfireb.appspot.com',
       messagingSenderId: '219536801527',
       appId: '1:219536801527:web:da5cc726d77d3119'
     }),
     AngularFirestoreModule,
     AngularFireAuthModule,
+    AngularFireStorageModule
    
 
   ],

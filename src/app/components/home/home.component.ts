@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   addToCart(index: number) {
       this.add = +index;
-      
+
   }
 
   ngOnDestroy(): void {
@@ -50,13 +50,11 @@ export class HomeComponent implements OnInit, OnDestroy {
       currentPrice: selectedItem.currentPrice
     };
     this.cartService.cartElements = this.amountValue;
-    console.log('wwwwwwwwwwwwwwwwwwwwwwwwwww', this.amountValue);
     this.cartService.addToCart(data)
          .then(() => {
-          console.log('yyyyyyyyyyyeeeeeeeeeeeeessssss', data);
-          this.add = -1;
+         this.add = -1;
        })
-       .catch(err => console.log('eeeeeeeeeeeerrrrrrrrrrrrrrrr', err));
+       .catch(err => {});
   }
 
 }

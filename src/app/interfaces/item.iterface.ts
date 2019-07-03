@@ -3,5 +3,6 @@ export interface Item {
     name?: string;
     description?: string;
     currentPrice?: number;
-    photoUrl?: string;
+    quantite?: number;
+    itemPhoto?: string;
 }

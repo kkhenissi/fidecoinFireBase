@@ -1,1 +1,13 @@
-<p>items works!</p>
+<div class="container magin-top">
+    <h2 class="text-center">Add New Item</h2>
+    <form #f="ngForm" (ngSubmit)="addNewItem(f)">
+        <input type="text" class="form-control" name="name" ngModel placeholder="Name" required><br>
+        <input type="text" class="form-control" name="description" ngModel placeholder="Description" required><br>
+        <input type="number" class="form-control" name="currentPrice" ngModel placeholder="Price" required><br>
+        <input type="number" class="form-control" name="quantite" ngModel placeholder="Quantite" required><br>
+        
+
+        <input type="file" name="photo" ngModel required #photo><br><br>
+        <input type="submit" value="Add" class="btn btn-primary" [disabled]="f.invalid">
+    </form>
+</div>
