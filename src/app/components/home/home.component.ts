@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   items: Array<Item> = [];
+ 
   itemsSubscription: Subscription;
   add: number = -1;
   amountValue: number = 0;
@@ -49,10 +50,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   buy(amount: number) {
     const selectedItem = this.items[this.add];
+   
     const data = {
-      name: selectedItem.name,
+      name: selectedItem['item'].name,
       amount: +amount,
-      currentPrice: selectedItem.currentPrice
+      currentPrice: selectedItem['item'].currentPrice
     };
     this.cartService.cartElements = this.amountValue;
     this.cartService.addToCart(data)

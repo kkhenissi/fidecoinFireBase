@@ -19,15 +19,14 @@ export class CartComponent implements OnInit {
             return {
               id: shopping.payload.doc.id,
               ...shopping.payload.doc.data()
-            }
-          })
-          console.log('oooooooooooooooooooooooooo', this.cart)
+            };
+          });
+          console.log('oooooooooooooooooooooooooo', this.cart);
 
         });
   }
 
   deleteFromCart(index) {
-  
      this.cartService.deleteInCart(this.cart[index].id);
 
   }
