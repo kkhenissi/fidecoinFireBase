@@ -1,6 +1,8 @@
 .badge-format {
     margin-left: 39px;
     margin-right: 39px;
+    color: yellowgreen;
+    font-size: 1.5em;
 }
 .less-margin {
     margin-top: 20px;

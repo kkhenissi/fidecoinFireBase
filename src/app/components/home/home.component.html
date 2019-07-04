@@ -3,20 +3,21 @@
 <div class="row">
     <div class="col col-12 col-md-6 col-lg-3" *ngFor="let itm of items; index as i">
         <div class="card">
-            <div class="card card-header"><h5>{{itm.item.name | titlecase}}</h5></div>
-            <img src="{{itm.photoUrl}}"  class="card-img">
+            <div class="card card-header text-center"><h5>{{itm.item.name | titlecase}}</h5>
+                <span class="badge badge-secondary badge-format">{{itm.item.currentPrice}}€</span>
+            </div>
+            <img src="{{itm.photoUrl}}"  class="img-responsive card-img">
             <div class="card-body">
                 <p class="card-text">{{itm.item.description}}</p>
             </div>
              
-            <div class="card-body">
+            <div class="card-body text-center">
                     <a (click)=addToCart(i) class=" card-link btn btn-outline-success" *ngIf="add !== i">Add to Cart</a>
                     <div *ngIf="add === i">
                         <input type="number" class="form-group" placeholder="Amount (Un)" [(ngModel)]= "amountValue" #amountTag>
                         <button class="btn btn-success" (click)="buy(amountTag.value)">Buy</button>
                     </div>
-                    <span class="badge badge-secondary badge-format">{{itm.item.currentPrice}}€</span>
-                    <a  class="card-link btn btn-outline-primary">Look more</a>
+                    <a  class="card-link btn btn-outline-primary">more</a>
             </div>
     </div>
 
