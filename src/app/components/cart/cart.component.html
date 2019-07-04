@@ -1,12 +1,18 @@
    <div class="container margin-top"> 
+       <h3>Shopping Cart</h3>
+       
     <table class="table  ">
             <thead>
-                    <td></td>
-                <td>Name</td>
-                <td>Price</td>
-                <td>Amount</td>
-                <td>Total</td>
-                <td>Options</td>
+                <tr>
+                <th></th>
+                <th style="width:230px;">Name</th>
+                <th style="width:230px;">Price</th>
+                <th style="width:230px;">Amount</th>
+                <th style="width:230px;">Total</th>
+                <th>Options</th>
+
+                </tr>
+                
             </thead>
             <tbody>
                 <tr *ngFor="let itm of cart; index as i">
@@ -21,12 +27,17 @@
                     </td>
                     <td>{{(itm.currentPrice * itm.amount) | currency}}</td>
                     <td>
-                        <button class="btn btn-primary"(click)="saveInCart(i)"> Save </button>
-                        <button class="btn btn-danger" (click)="deleteFromCart(i)"> Delete</button>
+                        <button class="btn btn-primary"(click)="saveInCart(i)"> + </button>
+                        <button class="btn btn-danger" (click)="deleteFromCart(i)"> X </button>
                     </td>
+                    
                 </tr>
+                   
             </tbody>
             <tfoot>
+                    <!-- <tr> 
+                            Total : <td  class="pull-right">{{totalCart | currency}}</td>
+                    </tr>    -->
                 <tr>
                     <th>
 

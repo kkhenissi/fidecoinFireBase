@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { Item } from 'src/app/interfaces/item.iterface';
 import { ItemsService } from 'src/app/services/items.service';
-import { Subscription } from 'rxjs';
+import { Subscription, Observable } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
@@ -12,8 +12,9 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy, OnChanges {
   items: Array<Item> = [];
+  currentPriceDec: Observable<number>;
  
   itemsSubscription: Subscription;
   add: number = -1;
@@ -32,10 +33,13 @@ export class HomeComponent implements OnInit, OnDestroy {
               ...element.payload.doc.data()
             };
           });
-          console.log('sssssssssssssssssssssssssssssss', this.items);
          }, err => {
            console.log(err);
          });
+  }
+
+  ngOnChanges() {
+    this.itemsService.decreseCurrentPrice('JHoIgZzmNopeyu3uAplh');
   }
   addToCart(index: number) {
     // tslint:disable-next-line:curly

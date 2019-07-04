@@ -49,5 +49,13 @@ export class ItemsService {
   // }
 
 }
+
+decreseCurrentPrice(id) {
+  return this.fs.collection(`items/${id}/item`).valueChanges('[currentPrice]')
+       .subscribe(result => {
+         console.log('yyyyyyyyyyyyyyyaaaaaaaaaaaaaaaaaaaqqqqqqqqqqqquuuuoi ==>', result);
+
+       }, err => console.log(err));
+}
 }
 

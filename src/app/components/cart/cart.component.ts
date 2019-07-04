@@ -9,6 +9,7 @@ import { Shopping } from 'src/app/interfaces/shopping.interface';
 })
 export class CartComponent implements OnInit {
   cart: Shopping[] = [];
+  totalCart: number = 1500;
 
   constructor(private cartService: CartService) { }
 
