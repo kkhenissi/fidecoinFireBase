@@ -3,5 +3,7 @@ export interface Shopping {
     amount?: number;
     name?: string;
     currentPrice?: number;
+    itemPhoto?: string;
+
 
 }

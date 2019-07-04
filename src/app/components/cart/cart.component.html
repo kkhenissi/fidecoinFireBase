@@ -1,6 +1,7 @@
-   <div class="container"> 
-    <table class="table table-striped">
+   <div class="container margin-top"> 
+    <table class="table  ">
             <thead>
+                    <td></td>
                 <td>Name</td>
                 <td>Price</td>
                 <td>Amount</td>
@@ -9,6 +10,10 @@
             </thead>
             <tbody>
                 <tr *ngFor="let itm of cart; index as i">
+                    <td>
+                        <img [src]="itm.itemPhoto" class="thumbnail">
+                    </td>
+                                   
                     <td>{{itm.name}}</td>
                     <td>{{itm.currentPrice | currency}}</td>
                     <td>
@@ -21,5 +26,21 @@
                     </td>
                 </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+
+                    </th>
+                    <th>
+
+                    </th>
+                    <th>
+                   
+                    </th>
+                </tr>
+            </tfoot>
         </table>
+        <button 
+        (click)="clearCart()" 
+        class="btn btn-danger btn-sm">Clear Cart</button>
     </div>    

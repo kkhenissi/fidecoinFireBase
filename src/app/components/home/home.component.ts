@@ -50,11 +50,13 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   buy(amount: number) {
     const selectedItem = this.items[this.add];
+    console.log('Selected item ====>', selectedItem)
    
     const data = {
       name: selectedItem['item'].name,
       amount: +amount,
-      currentPrice: selectedItem['item'].currentPrice
+      currentPrice: selectedItem['item'].currentPrice,
+      itemPhoto: selectedItem['photoUrl']
     };
     this.cartService.cartElements = this.amountValue;
     this.cartService.addToCart(data)

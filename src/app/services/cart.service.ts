@@ -7,6 +7,7 @@ import { AuthService } from './auth.service';
   providedIn: 'root'
 })
 export class CartService {
+
   cartElements: number = 0;
 
   constructor(private afStore: AngularFirestore,
@@ -30,6 +31,11 @@ export class CartService {
     return this.afStore.doc(`users/${this.authService.userId}/cart/${id}`).update({
       amount
     });
+
+  }
+
+  clearCart(id) {
+    return this.afStore.doc(`users/${this.authService.userId}/cart/`).delete();
 
   }
 }
