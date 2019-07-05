@@ -31,8 +31,9 @@ export class CartComponent implements OnInit {
      this.cartService.deleteInCart(this.cart[index].id);
 
   }
-  saveInCart(index, amount) {
+  saveInCart(index) {
      this.cartService.saveInCart(this.cart[index].id, this.cart[index].amount);
   }
+  clearCart() {}
 
 }

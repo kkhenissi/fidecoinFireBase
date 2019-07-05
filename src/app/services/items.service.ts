@@ -49,13 +49,19 @@ export class ItemsService {
   // }
 
 }
+// return this.afStore.doc(`users/${this.authService.userId}/cart/${id}`).update({
+//   amount
+// });
+decreseCurrentPrice(id, currentPrice) {
 
-decreseCurrentPrice(id) {
-  return this.fs.collection(`items/${id}/item`).valueChanges('[currentPrice]')
-       .subscribe(result => {
-         console.log('yyyyyyyyyyyyyyyaaaaaaaaaaaaaaaaaaaqqqqqqqqqqqquuuuoi ==>', result);
+  console.log('iiiiiiiiiiiiiiiiiiiidddddddddddddddddddddd', id);
+  console.log('ccccccccccccccccuuuuuuuuuuurrrrrrrrrrrr', this.fs.doc(`items/${id}?item['currentPrice']`).valueChanges().subscribe(data => {
+            console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', data);
+  }));
 
-       }, err => console.log(err));
+// return this.fs.doc(`items/${id}?item['currentPrice']`).update({currentPrice});
+
+
 }
 }
 

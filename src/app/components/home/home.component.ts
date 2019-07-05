@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, AfterContentInit, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { Item } from 'src/app/interfaces/item.iterface';
 import { ItemsService } from 'src/app/services/items.service';
-import { Subscription, Observable } from 'rxjs';
+import { Subscription, Observable, interval } from 'rxjs';
 import { CartService } from 'src/app/services/cart.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
@@ -12,9 +12,12 @@ import { Router } from '@angular/router';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnDestroy, OnChanges {
+export class HomeComponent implements OnInit, OnDestroy, AfterViewChecked {
   items: Array<Item> = [];
-  currentPriceDec: Observable<number>;
+  sourcef = interval(1000);
+  
+
+  // currentPriceDec: Observable<number>;
  
   itemsSubscription: Subscription;
   add: number = -1;
@@ -36,10 +39,18 @@ export class HomeComponent implements OnInit, OnDestroy, OnChanges {
          }, err => {
            console.log(err);
          });
+ 
   }
 
-  ngOnChanges() {
-    this.itemsService.decreseCurrentPrice('JHoIgZzmNopeyu3uAplh');
+  ngAfterViewChecked() {
+  //  alert('0000')
+    const   randItemId = this.items[Math.floor(Math.random() * this.items.length)];
+    const currentPriceDec = (randItemId['item'].currentPrice - 1);
+    this.decreseCurrentPrice(randItemId.id, currentPriceDec);
+//  console.log('iiiiiiinnnnnnnn hhhhhhooommmeecccooommmmpp', currentPriceDec );
+ 
+
+  //  this.itemsService.decreseCurrentPrice(randItemId.id, this.currentPriceDec );
   }
   addToCart(index: number) {
     // tslint:disable-next-line:curly
@@ -54,7 +65,7 @@ export class HomeComponent implements OnInit, OnDestroy, OnChanges {
   }
   buy(amount: number) {
     const selectedItem = this.items[this.add];
-    console.log('Selected item ====>', selectedItem)
+    console.log('Selected item ====>', selectedItem);
    
     const data = {
       name: selectedItem['item'].name,
@@ -69,5 +80,12 @@ export class HomeComponent implements OnInit, OnDestroy, OnChanges {
        })
        .catch(err => {});
   }
+  decreseCurrentPrice(id, currentPriceDec) {
+  
 
+  //  this.cartService.saveInCart(this.cart[index].id, this.cart[index].amount);
+  console.log('this.items.id ====>', id);
+    this.itemsService.decreseCurrentPrice(id, currentPriceDec);
+    
+ }
 }
