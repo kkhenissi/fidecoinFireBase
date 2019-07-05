@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewChecked {
   sourcef = interval(1000);
   
 
-  // currentPriceDec: Observable<number>;
+  currentPriceDecrement: Observable<number>;
  
   itemsSubscription: Subscription;
   add: number = -1;
@@ -39,18 +39,26 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewChecked {
          }, err => {
            console.log(err);
          });
+
  
+  interval(3000).subscribe(()=> {
+          const   randItemId = this.items[Math.floor(Math.random() * this.items.length)];
+          // const currentPriceDec = (randItemId['item'].currentPrice - 1);
+          // const nama2tem = randItemId['item'].name;
+          // const descrItem = randItemId['item'].description;
+           randItemId['item'].currentPrice = randItemId['item'].currentPrice -1;
+          // randItemId.name = namaItem;
+          // randItemId.description = descrItem;
+    
+           this.decreseCurrentPrice(randItemId.id, randItemId['item']);
+        console.log('iiiiiiinnnnnnnn hhhhhhooommmeecccooommmmpp', randItemId['item'] );
+        })
+  
+      
   }
 
   ngAfterViewChecked() {
-  //  alert('0000')
-    const   randItemId = this.items[Math.floor(Math.random() * this.items.length)];
-    const currentPriceDec = (randItemId['item'].currentPrice - 1);
-    this.decreseCurrentPrice(randItemId.id, currentPriceDec);
-//  console.log('iiiiiiinnnnnnnn hhhhhhooommmeecccooommmmpp', currentPriceDec );
- 
-
-  //  this.itemsService.decreseCurrentPrice(randItemId.id, this.currentPriceDec );
+   
   }
   addToCart(index: number) {
     // tslint:disable-next-line:curly
@@ -80,12 +88,12 @@ export class HomeComponent implements OnInit, OnDestroy, AfterViewChecked {
        })
        .catch(err => {});
   }
-  decreseCurrentPrice(id, currentPriceDec) {
+  decreseCurrentPrice(id, item) {
   
 
   //  this.cartService.saveInCart(this.cart[index].id, this.cart[index].amount);
   console.log('this.items.id ====>', id);
-    this.itemsService.decreseCurrentPrice(id, currentPriceDec);
+    this.itemsService.decreseCurrentPrice(id, item);
     
  }
 }

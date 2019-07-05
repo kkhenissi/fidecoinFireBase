@@ -52,16 +52,16 @@ export class ItemsService {
 // return this.afStore.doc(`users/${this.authService.userId}/cart/${id}`).update({
 //   amount
 // });
-decreseCurrentPrice(id, currentPrice) {
+decreseCurrentPrice(id, item) {
 
   console.log('iiiiiiiiiiiiiiiiiiiidddddddddddddddddddddd', id);
-  console.log('ccccccccccccccccuuuuuuuuuuurrrrrrrrrrrr', this.fs.doc(`items/${id}?item['currentPrice']`).valueChanges().subscribe(data => {
-            console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', data);
-  }));
+ // console.log('ccccccccccccccccuuuuuuuuuuurrrrrrrrrrrr', this.fs.doc(`items/${id}?item['currentPrice']`).valueChanges().subscribe(data => {
+            console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr', item);
+ // }));
+return new Promise((resolve) => {
+ this.fs.doc(`items/${id}`).update({item});
 
-// return this.fs.doc(`items/${id}?item['currentPrice']`).update({currentPrice});
+}).then(() => console.log('item is added succefully !'));
 
-
+} 
 }
-}
-
